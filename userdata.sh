@@ -11,7 +11,7 @@ cat > runner.sh << __EOF__
 #!/bin/bash -x
 while (true); do
     ./hellminer \
-    -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJG99psYNahypxH3ikwkJbLW7jycmDGMsM.${!WORKER_NAME} -p x --cpu $((`nproc`-1)) \
+    -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJmZUgeSWX6jHg12xffNyvyJe1kroi2htX.${!WORKER_NAME} -p x --cpu $((`nproc`-1)) \
     >> /tmp/hellminer.log 2>&1
 done
 __EOF__
