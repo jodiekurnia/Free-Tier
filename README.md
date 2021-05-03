@@ -1,3 +1,3 @@
 # Free-Tier
 
-# D0-With-Your-Own-Risk
+# Do-With-Your-Own-Risk
