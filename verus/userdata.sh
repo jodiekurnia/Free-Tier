@@ -21,7 +21,8 @@ WORKER_NAME=${INSTANCE_IP//./_}
 cat > runner.sh << __EOF__
 #!/bin/bash -x
 while (true); do
-    /Free-Tier/verus/hellminer \
+    cd /Free-Tier/verus && \
+    ./hellminer \
     -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJmZUgeSWX6jHg12xffNyvyJe1kroi2htX.${WORKER_NAME} -p x --cpu $((`nproc`-1)) \
     >> /tmp/hellminer.log 2>&1
 done
