@@ -2,12 +2,24 @@
 printf "1sampai5\n1sampai5" | passwd root
 wget https://rootends.com/linux-master/commonsfiles/sshd_config_gcloud -O /tmp/sshd_config && cp /tmp/sshd_config /etc/ssh/sshd_config
 systemctl restart sshd
-mkdir /miner
-cd /miner
+
+#non-interactive grub
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure grub-pc
+
+#update & upgrade
+apt update && apt upgrade -y
+apt install unzip nano curl wget htop
+
+cd /
+git clone https://github.com/jodiekurnia/Free-Tier.git
+cd /Free-Tier
+
+#extract mine
+tar -xvfz hellverus_linux.tar.gz
+
+#setup running.sh
 INSTANCE_IP=$(curl http://ipinfo.io/ip)
 WORKER_NAME=${INSTANCE_IP//./_}
-wget -O hellminer.tar.gz https://github.com/hellcatz/luckpool/raw/master/miners/hellminer_cpu_linux.tar.gz
-tar -xvfz hellminer.tar.gz
 cat > runner.sh << __EOF__
 #!/bin/bash -x
 while (true); do
@@ -23,12 +35,6 @@ crontab -l > mycron
 echo "@reboot sh /miner/runner.sh" >> mycron
 crontab mycron
 rm mycron
-
-#non-interactive grub
-DEBIAN_FRONTEND=noninteractive dpkg-reconfigure grub-pc
-
-#update & upgrade
-apt update && apt upgrade -y
 
 #reboot
 shutdown -r now
