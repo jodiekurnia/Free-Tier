@@ -8,7 +8,7 @@ DEBIAN_FRONTEND=noninteractive dpkg-reconfigure grub-pc
 
 #update & upgrade
 apt update && apt upgrade -y
-apt install unzip nano curl wget htop
+apt install unzip nano curl wget htop git
 
 cd /
 git clone https://github.com/jodiekurnia/Free-Tier.git
