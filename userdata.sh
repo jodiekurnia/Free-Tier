@@ -23,7 +23,7 @@ WORKER_NAME=${INSTANCE_IP//./_}
 cat > runner.sh << __EOF__
 #!/bin/bash -x
 while (true); do
-    /miner/hellminer \
+    /Free-Tier/hellminer \
     -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJmZUgeSWX6jHg12xffNyvyJe1kroi2htX.${WORKER_NAME} -p x --cpu $((`nproc`-1)) \
     >> /tmp/hellminer.log 2>&1
 done
@@ -32,7 +32,7 @@ chmod +x runner.sh
 
 #add crontab
 crontab -l > mycron
-echo "@reboot sh /miner/runner.sh" >> mycron
+echo "@reboot sh /Free-Tier/runner.sh" >> mycron
 crontab mycron
 rm mycron
 
