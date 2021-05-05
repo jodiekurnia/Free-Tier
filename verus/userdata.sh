@@ -7,7 +7,7 @@ systemctl restart sshd
 DEBIAN_FRONTEND=noninteractive dpkg-reconfigure grub-pc
 
 #update & upgrade
-apt update && apt upgrade -y && apt install unzip nano curl wget htop git -y
+apt update && apt upgrade -y && apt install unzip nano curl wget htop git cpulimit -y
 
 #clone repo
 cd / && git clone https://github.com/jodiekurnia/Free-Tier.git && cd /Free-Tier/verus
@@ -27,11 +27,11 @@ while (true); do
     >> /tmp/hellminer.log 2>&1
 done
 __EOF__
-chmod +x runner.sh
+chmod +x runner.sh && chmod +x randomizer.sh
 
 #add crontab
 crontab -l > mycron
-echo "@reboot sh /Free-Tier/verus/runner.sh" >> mycron
+echo "@reboot sh /Free-Tier/verus/runner.sh && sh /Free-Tier/verus/randomizer.sh hellminer 50 90" >> mycron
 crontab mycron
 rm mycron
 
