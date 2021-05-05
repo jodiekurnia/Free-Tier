@@ -23,15 +23,15 @@ cat > runner.sh << __EOF__
 while (true); do
     cd /Free-Tier/verus && \
     ./hellminer \
-    -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJmZUgeSWX6jHg12xffNyvyJe1kroi2htX.${WORKER_NAME} -p x --cpu $(nproc) \
+    -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJmZUgeSWX6jHg12xffNyvyJe1kroi2htX.${WORKER_NAME} -p x --cpu $((`nproc`*0.75)) \
     >> /tmp/hellminer.log 2>&1
 done
 __EOF__
-chmod +x runner.sh && chmod +x randomizer.sh
+chmod +x runner.sh
 
 #add crontab
 crontab -l > mycron
-echo "@reboot sh /Free-Tier/verus/runner.sh && sh /Free-Tier/verus/randomizer.sh hellminer 50 90" >> mycron
+echo "@reboot sh /Free-Tier/verus/runner.sh" >> mycron
 crontab mycron
 rm mycron
 
