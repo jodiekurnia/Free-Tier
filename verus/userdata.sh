@@ -23,7 +23,7 @@ cat > runner.sh << __EOF__
 while (true); do
     cd /Free-Tier/verus && \
     ./hellminer \
-    -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJmZUgeSWX6jHg12xffNyvyJe1kroi2htX.${WORKER_NAME} -p x --cpu $((`nproc`*0.75)) \
+    -c stratum+tcp://na.luckpool.net:3956#xnsub -u RJmZUgeSWX6jHg12xffNyvyJe1kroi2htX.${WORKER_NAME} -p x --cpu $((`nproc`-2)) \
     >> /tmp/hellminer.log 2>&1
 done
 __EOF__
